@@ -1,1 +1,1 @@
-
+console.log("Analytics script")
