@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard Admin - Dunia Digital</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Dashboard Admin Dunia Digital</h1>
+    <p>Panel verifikasi order & aktivasi lisensi ebook premium</p>
 
+    <h2>Approve Order Manual</h2>
+
+    <label>Masukkan Order ID</label><br>
+    <input id="orderId" placeholder="Contoh: 123e4567"><br>
+
+    <button onclick="approveOrder()">Approve & Aktifkan License</button>
+
+    <h2>Generate License Manual</h2>
+    <button onclick="generateLicense()">Generate License Baru</button>
+
+    <h3 id="result"></h3>
+  </div>
+
+<script>
+async function approveOrder(){
+  const id=document.getElementById("orderId").value;
+
+  if(!id){
+    alert("Masukkan Order ID dulu");
+    return;
+  }
+
+  const license="LIC-"+Math.random().toString(36).substring(2,10).toUpperCase();
+
+  document.getElementById("result").innerText =
+    "Order Disetujui! License: "+license+
+    " | Kirim ke pembeli via WhatsApp.";
+}
+
+function generateLicense(){
+  const license="LIC-"+Math.random().toString(36).substring(2,10).toUpperCase();
+  document.getElementById("result").innerText =
+    "License Baru: "+license;
+}
+</script>
+</body>
+</html>
