@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Store Dunia Digital</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Produk Ebook Premium Spiritual</h2>
 
+    <div class="product">
+      <h3>Kesadaran Diri Level Ilahiah</h3>
+      <p>Ebook pengembangan diri spiritual tingkat tinggi.</p>
+      <button onclick="buy('Kesadaran Diri Level Ilahiah')">Beli Sekarang</button>
+    </div>
+
+    <div class="product">
+      <h3>Makna Hidup Sejati</h3>
+      <p>Panduan memahami hakikat kehidupan & kesadaran.</p>
+      <button onclick="buy('Makna Hidup Sejati')">Beli Sekarang</button>
+    </div>
+
+    <div class="product">
+      <h3>Zikir Khofi Mastery</h3>
+      <p>Metode praktik zikir khofi untuk transformasi batin.</p>
+      <button onclick="buy('Zikir Khofi Mastery')">Beli Sekarang</button>
+    </div>
+  </div>
+
+<script>
+function buy(product){
+  localStorage.setItem("product", product);
+  window.location.href="checkout.html";
+}
+</script>
+</body>
+</html>
