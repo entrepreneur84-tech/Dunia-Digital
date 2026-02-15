@@ -1,1 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Aturan Reseller & Konsep Platform | Dunia Digital</title>
+  <meta name="description" content="Aturan resmi reseller dan konsep platform toko digital Dunia Digital. Menjelaskan hak admin, user, dan reseller.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      padding: 20px;
+      background: #f4f6f8;
+    }
+    h1, h2, h3 {
+      color: #222;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    ul, ol {
+      margin-left: 20px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
 
+<h1>Aturan Reseller & Konsep Platform</h1>
+
+<section>
+  <h2>1. Aturan Khusus Reseller Ebook Premium</h2>
+  <p>User <strong>tidak otomatis</strong> boleh menjual ebook premium milik admin.</p>
+  <p>Hanya user dengan status:</p>
+  <code>RESELLER_AKTIF</code>
+
+  <h3>Aturan Reseller:</h3>
+  <ul>
+    <li>Tidak boleh mengubah isi ebook</li>
+    <li>Tidak boleh mengubah harga tanpa izin admin</li>
+    <li>Tidak boleh mengklaim ebook sebagai milik pribadi</li>
+    <li>Tidak boleh membagikan file PDF mentah</li>
+    <li>Hanya boleh menjual melalui sistem platform</li>
+    <li>File ebook tetap disimpan di server admin</li>
+  </ul>
+
+  <p>Jika melanggar aturan, status reseller akan dicabut tanpa pemberitahuan.</p>
+</section>
+
+<section>
+  <h2>2. Struktur Role Sistem</h2>
+
+  <h3>Admin (Pemilik Platform)</h3>
+  <ul>
+    <li>Mengelola toko ebook premium</li>
+    <li>Mengelola semua user</li>
+    <li>Menentukan user sebagai reseller atau tidak</li>
+    <li>Mengelola semua transaksi</li>
+    <li>Mengatur harga dan komisi reseller</li>
+  </ul>
+
+  <h3>User (Pelanggan Sistem)</h3>
+  <ul>
+    <li>Memiliki toko sendiri</li>
+    <li>Boleh menjual produk digital milik sendiri</li>
+    <li>Tidak bisa mengelola toko admin</li>
+    <li>Tidak bisa menjual ebook premium admin tanpa izin</li>
+  </ul>
+
+  <h3>Reseller (User Khusus)</h3>
+  <ul>
+    <li>Semua hak user biasa</li>
+    <li>Boleh menjual ebook premium admin</li>
+    <li>Tidak memiliki akses ke file PDF asli</li>
+    <li>Hanya bisa menjual lewat sistem</li>
+  </ul>
+</section>
+
+<section>
+  <h2>3. Alur Sistem (Flow)</h2>
+
+  <ol>
+    <li>User mendaftar akun</li>
+    <li>User login ke dashboard</li>
+    <li>User membuat toko digital</li>
+    <li>User mengupload produk digital milik sendiri</li>
+    <li>User mempromosikan toko mereka</li>
+    <li>Pembeli melakukan checkout</li>
+    <li>Sistem memverifikasi pembayaran</li>
+    <li>Sistem memberikan akses download otomatis</li>
+  </ol>
+
+  <p><strong>Alur khusus reseller:</strong></p>
+  <ol>
+    <li>Admin menyetujui user sebagai reseller</li>
+    <li>Produk ebook premium muncul di toko reseller</li>
+    <li>Reseller menjual produk sesuai aturan</li>
+  </ol>
+</section>
+
+<section>
+  <h2>4. Struktur Data (Logika Sistem)</h2>
+
+  <h3>Tabel Users</h3>
+  <ul>
+    <li>id</li>
+    <li>email</li>
+    <li>password</li>
+    <li>role (admin / user / reseller)</li>
+    <li>store_name</li>
+  </ul>
+
+  <h3>Tabel Products</h3>
+  <ul>
+    <li>id</li>
+    <li>user_id</li>
+    <li>title</li>
+    <li>price</li>
+    <li>file_path</li>
+    <li>is_premium_admin (true / false)</li>
+  </ul>
+
+  <h3>Tabel Orders</h3>
+  <ul>
+    <li>id</li>
+    <li>buyer_email</li>
+    <li>product_id</li>
+    <li>status (pending / paid)</li>
+  </ul>
+
+  <h3>Tabel Reseller</h3>
+  <ul>
+    <li>id</li>
+    <li>user_id</li>
+    <li>approved (true / false)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>5. Tentang Platform</h2>
+  <p>Platform ini menyediakan dua layanan utama:</p>
+  <ul>
+    <li>Penjualan ebook premium milik admin</li>
+    <li>Sistem toko digital untuk user yang ingin menjual produk digital sendiri</li>
+  </ul>
+
+  <p>
+    Setiap user memiliki toko masing-masing yang bersifat mandiri dan dapat diakses secara publik.
+    Produk yang dijual oleh user sepenuhnya merupakan tanggung jawab user tersebut.
+  </p>
+
+  <p>
+    Ebook premium milik admin tidak dapat dijual ulang oleh user kecuali telah disetujui sebagai reseller resmi.
+  </p>
+
+  <p>
+    Dengan sistem ini, toko admin dan toko user tidak bercampur dan berdiri secara mandiri.
+  </p>
+</section>
+
+<section>
+  <h2>6. Ringkasan</h2>
+  <p>
+    Admin menjual ebook premium dan menyediakan sistem toko digital.
+    User hanya mengelola toko miliknya sendiri.
+    Reseller adalah user khusus yang diizinkan menjual ebook premium admin sesuai aturan.
+  </p>
+</section>
+
+<footer>
+  <p>&copy; 2026 Dunia Digital. All rights reserved.</p>
+</footer>
+
+</body>
+    </html>
