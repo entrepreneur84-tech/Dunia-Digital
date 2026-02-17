@@ -1,49 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Viewer Ebook Premium</title>
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viewer Ebook - Dunia Digital</title>
+  <link rel="stylesheet" href="/assets/css/style.css" />
+
+  <style>
+    body {
+      margin: 0;
+      background: #020617;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    .card {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      margin-top: 20px;
+      border-radius: 12px;
+      display: none;
+    }
+
+    .btn-primary {
+      margin-top: 15px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .note {
+      margin-top: 15px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
+
 <body>
+
   <div class="container">
-    <h2>Viewer Ebook Premium</h2>
-    <p>Masukkan License Key untuk membuka ebook.</p>
+    <h1>🔐 Akses Ebook Premium</h1>
+    <p>Masukkan kode akses yang diberikan admin setelah pembayaran diverifikasi.</p>
 
-    <input id="license" placeholder="Masukkan License Key"><br>
-    <button class="btn" onclick="checkLicense()">Buka Ebook</button>
+    <div class="card">
+      <input type="password" id="accessKey" placeholder="Masukkan Kode Akses..." />
+      <button class="btn-primary" onclick="unlockEbook()">Buka Ebook</button>
 
-    <div id="viewer" style="display:none; margin-top:20px;">
-      <h3>Akses Diberikan ✅</h3>
-      <iframe src="https://example.com/ebook.pdf" width="100%" height="600"></iframe>
+      <iframe id="ebookFrame"></iframe>
+
+      <p class="note">
+        *Dilarang membagikan akses tanpa izin. Sistem lisensi privat Dunia Digital.
+      </p>
     </div>
-
-    <h3 id="status"></h3>
   </div>
 
-<script>
-async function checkLicense(){
-  const license=document.getElementById("license").value;
+  <script>
+    function unlockEbook() {
+      const key = document.getElementById("accessKey").value.trim();
 
-  if(!license){
-    alert("Masukkan license key dulu");
-    return;
-  }
+      // Contoh kode akses (nanti bisa diganti / dihubungkan ke sistem lisensi)
+      const validKeys = {
+        "SPIRIT100": "https://drive.google.com/file/d/1/view?usp=sharing",
+        "SPIRIT200": "https://drive.google.com/file/d/2/view?usp=sharing",
+        "BUNDLE250": "https://drive.google.com/file/d/3/view?usp=sharing"
+      };
 
-  const res=await fetch("/api/license",{
-    method:"POST",
-    body:JSON.stringify({license})
-  });
+      if (validKeys[key]) {
+        const frame = document.getElementById("ebookFrame");
+        frame.src = validKeys[key];
+        frame.style.display = "block";
+      } else {
+        alert("Kode akses tidak valid atau belum diaktivasi oleh admin.");
+      }
+    }
+  </script>
 
-  const json=await res.json();
-
-  if(json.valid){
-    document.getElementById("viewer").style.display="block";
-    document.getElementById("status").innerText="License valid. Ebook terbuka.";
-  }else{
-    document.getElementById("status").innerText="License tidak valid ❌";
-  }
-}
-</script>
 </body>
-  </html>
+      </html>
