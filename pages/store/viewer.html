@@ -2,107 +2,89 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Viewer Ebook - Dunia Digital</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Baca Ebook</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
   <style>
     body {
       margin: 0;
-      background: #020617;
-      color: white;
+      background: #0f172a;
+      color: #fff;
       font-family: Arial, sans-serif;
     }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 30px 20px;
+    header {
+      padding: 16px;
+      background: #020617;
+      border-bottom: 1px solid #1e293b;
       text-align: center;
+      font-weight: bold;
+      letter-spacing: 1px;
     }
-
-    .card {
-      background: #0f172a;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    #viewer-container {
+      height: calc(100vh - 70px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-    }
-
     iframe {
       width: 100%;
-      height: 600px;
+      height: 100%;
       border: none;
-      margin-top: 20px;
-      border-radius: 12px;
-      display: none;
+      background: #000;
     }
-
-    .btn-primary {
-      margin-top: 15px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #7c3aed, #06b6d4);
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .note {
-      margin-top: 15px;
-      font-size: 13px;
-      opacity: 0.7;
+    .message {
+      text-align: center;
+      font-size: 18px;
+      opacity: 0.8;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="container">
-    <h1>🔐 Akses Ebook Premium</h1>
-    <p>Masukkan kode akses yang diberikan admin setelah pembayaran diverifikasi.</p>
+<header>
+  📖 Viewer Ebook Premium
+</header>
 
-    <div class="card">
-      <input type="password" id="accessKey" placeholder="Masukkan Kode Akses..." />
-      <button class="btn-primary" onclick="unlockEbook()">Buka Ebook</button>
+<div id="viewer-container">
+  <div class="message" id="status">Memvalidasi lisensi...</div>
+</div>
 
-      <iframe id="ebookFrame"></iframe>
+<script>
+  const container = document.getElementById("viewer-container");
+  const statusText = document.getElementById("status");
 
-      <p class="note">
-        *Dilarang membagikan akses tanpa izin. Sistem lisensi privat Dunia Digital.
-      </p>
-    </div>
-  </div>
+  // Ambil license key dari URL: viewer.html?key=XXXX
+  const params = new URLSearchParams(window.location.search);
+  const licenseKey = params.get("key");
 
-  <script>
-    function unlockEbook() {
-      const key = document.getElementById("accessKey").value.trim();
+  if (!licenseKey) {
+    statusText.innerText = "License key tidak ditemukan.";
+  } else {
+    validateLicense(licenseKey);
+  }
 
-      // Contoh kode akses (nanti bisa diganti / dihubungkan ke sistem lisensi)
-      const validKeys = {
-        "SPIRIT100": "https://drive.google.com/file/d/1/view?usp=sharing",
-        "SPIRIT200": "https://drive.google.com/file/d/2/view?usp=sharing",
-        "BUNDLE250": "https://drive.google.com/file/d/3/view?usp=sharing"
-      };
+  async function validateLicense(key) {
+    try {
+      const res = await fetch("/api/validate?key=" + key);
+      const data = await res.json();
 
-      if (validKeys[key]) {
-        const frame = document.getElementById("ebookFrame");
-        frame.src = validKeys[key];
-        frame.style.display = "block";
+      if (data.valid) {
+        loadPDF(data.pdfUrl);
       } else {
-        alert("Kode akses tidak valid atau belum diaktivasi oleh admin.");
+        statusText.innerText = "Lisensi tidak valid atau belum aktif.";
       }
+    } catch (err) {
+      statusText.innerText = "Terjadi kesalahan koneksi.";
+      console.error(err);
     }
-  </script>
+  }
+
+  function loadPDF(url) {
+    container.innerHTML = `
+      <iframe src="${url}#toolbar=0&navpanes=0&scrollbar=1"></iframe>
+    `;
+  }
+</script>
 
 </body>
-      </html>
+</html>
