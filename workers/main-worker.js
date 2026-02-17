@@ -1,91 +1,57 @@
-import { CONFIG } from "./config.js";
-
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
-    // API ORDER
-    if (url.pathname === "/api/order" && request.method === "POST") {
-      return createOrder(request, env);
+    // ROUTER API
+    if (url.pathname === "/api/validate") {
+      return handleValidate(url, env);
     }
 
-    // API VALIDASI LICENSE
-    if (url.pathname === "/api/license" && request.method === "POST") {
-      return verifyLicense(request, env);
-    }
-
-    return new Response("Dunia Digital Worker Active", { status: 200 });
+    return new Response("API Dunia Digital Aktif 🚀", {
+      status: 200,
+      headers: { "Content-Type": "text/plain" }
+    });
   }
 };
 
-// ===============================
-// CREATE ORDER + GENERATE WA LINK
-// ===============================
-async function createOrder(req, env) {
-  const data = await req.json();
-  const id = crypto.randomUUID();
+// =============================
+// VALIDATE LICENSE
+// =============================
+async function handleValidate(url, env) {
+  const key = url.searchParams.get("key");
 
-  const order = {
-    id,
-    name: data.name || "-",
-    email: data.email || "-",
-    product: data.product || "-",
-    method: data.method || "-",
-    status: "PENDING_PAYMENT",
-    created: Date.now()
-  };
+  if (!key) {
+    return json({
+      valid: false,
+      message: "License key kosong"
+    });
+  }
 
-  // Simpan order ke KV
-  await env.orders.put(id, JSON.stringify(order));
+  // MODE DEMO (sementara sebelum pakai KV)
+  const VALID_KEY = "DD-ACCESS-2026";
 
-  // Pesan WhatsApp otomatis
-  const message = `
-Assalamu’alaikum Admin Dunia Digital
+  if (key === VALID_KEY) {
+    return json({
+      valid: true,
+      pdfUrl: "/protected/ebook.pdf" // nanti diganti R2
+    });
+  }
 
-Saya sudah melakukan order:
-
-Nama: ${order.name}
-Email: ${order.email}
-Produk: ${order.product}
-Metode: ${order.method}
-
-Detail Pembayaran:
-SeaBank a.n AHMAD BARIZI
-901981495649
-Bank Jago a.n AHMAD BARIZI
-109896731184
-
-Mohon verifikasi pembayaran 🙏
-Order ID: ${order.id}
-  `.trim();
-
-  const waLink =
-    `https://wa.me/${CONFIG.WHATSAPP.ADMIN_NUMBER}?text=` +
-    encodeURIComponent(message);
-
-  return Response.json({
-    success: true,
-    order_id: id,
-    whatsapp_link: waLink,
-    payment: CONFIG.PAYMENT
+  return json({
+    valid: false,
+    message: "License tidak valid"
   });
 }
 
-// ===============================
-// VALIDASI LICENSE (UNTUK VIEWER)
-// ===============================
-async function verifyLicense(req, env) {
-  const { license } = await req.json();
-
-  if (!license) {
-    return Response.json({ valid: false });
-  }
-
-  const data = await env.licenses.get(license);
-
-  if (!data) {
-    return Response.json({ valid: false });
-  }
-
-  return Response.json({ valid: true });
+// =============================
+// HELPER JSON RESPONSE
+// =============================
+function json(data, status = 200) {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*"
+    }
+  });
 }
