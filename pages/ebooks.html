@@ -1,235 +1,267 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toko Ebook Premium | Dunia Digital</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ebooks Premium - Dunia Digital</title>
 
-<style>
-body{
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:#0b0b0f;
-  color:#fff;
-}
-header{
-  background:#000;
-  padding:20px;
-  text-align:center;
-  border-bottom:1px solid gold;
-}
-header h1{
-  margin:0;
-  color:gold;
-  font-size:24px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:20px;
-  padding:20px;
-}
-.card{
-  background:#111;
-  border:1px solid rgba(255,215,0,0.2);
-  border-radius:14px;
-  overflow:hidden;
-  text-align:center;
-  transition:0.3s;
-}
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 15px rgba(255,215,0,0.3);
-}
-.card img{
-  width:100%;
-  height:260px;
-  object-fit:cover;
-  background:#000;
-}
-.card h3{
-  font-size:16px;
-  padding:10px;
-  margin:0;
-  min-height:60px;
-}
-.btn{
-  display:block;
-  margin:10px;
-  padding:10px;
-  border-radius:8px;
-  text-decoration:none;
-  font-size:14px;
-}
-.btn.detail{
-  border:1px solid gold;
-  color:gold;
-}
-.btn.detail:hover{
-  background:gold;
-  color:#000;
-}
-footer{
-  text-align:center;
-  padding:20px;
-  border-top:1px solid gold;
-  font-size:13px;
-  color:#bbb;
-}
-</style>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #fff;
+    }
+
+    header {
+      background: #020617;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      padding: 30px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+    }
+
+    .ebook-card {
+      background: #020617;
+      border-radius: 15px;
+      padding: 15px;
+      text-align: center;
+      transition: 0.3s;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .ebook-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    }
+
+    .ebook-card img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .ebook-card h3 {
+      font-size: 15px;
+      margin: 15px 0 10px;
+      min-height: 40px;
+    }
+
+    .ebook-card a {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 8px;
+      background: #38bdf8;
+      color: #000;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .ebook-card a:hover {
+      background: #0ea5e9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      font-size: 13px;
+      background: #020617;
+      margin-top: 40px;
+      color: #94a3b8;
+    }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <h1>🌑 Toko Ebook Premium Dunia Digital 💎</h1>
+  📚 Ebooks Premium Dunia Digital
 </header>
 
-<div class="grid">
+<div class="container">
+  <div class="grid">
 
-  <div class="card">
-    <img src="assets/img/hakikat-quantum-ihsan.png">
-    <h3>Hakikat Quantum Ihsan</h3>
-    <a href="/produk/hakikat-quantum-ihsan.html" class="btn detail">Lihat Detail</a>
+    <!-- 1 -->
+    <div class="ebook-card">
+      <img src="/assets/img/ksatria-spiritual.png" alt="Ksatria Spiritual">
+      <h3>Ksatria Spiritual</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 2 -->
+    <div class="ebook-card">
+      <img src="/assets/img/rahasia-membongkar-potensi-diri.png" alt="Rahasia Membongkar Potensi Diri">
+      <h3>Rahasia Membongkar Potensi Diri</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 3 -->
+    <div class="ebook-card">
+      <img src="/assets/img/quantum-dzikir.png" alt="Quantum Dzikir">
+      <h3>Quantum Dzikir</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 4 -->
+    <div class="ebook-card">
+      <img src="/assets/img/quantum-cahaya.jpg" alt="Quantum Cahaya">
+      <h3>Quantum Cahaya</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 5 -->
+    <div class="ebook-card">
+      <img src="/assets/img/quantum-syukur.png" alt="Quantum Syukur">
+      <h3>Quantum Syukur</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 6 -->
+    <div class="ebook-card">
+      <img src="/assets/img/hakikat-quantum-ihsan.png" alt="Hakikat Quantum Ihsan">
+      <h3>Hakikat Quantum Ihsan</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 7 -->
+    <div class="ebook-card">
+      <img src="/assets/img/the-art-of-surrender.png" alt="The Art of Surrender">
+      <h3>The Art of Surrender</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 8 -->
+    <div class="ebook-card">
+      <img src="/assets/img/law-of-spiritual-attraction.png" alt="Law of Spiritual Attraction">
+      <h3>Law of Spiritual Attraction</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 9 -->
+    <div class="ebook-card">
+      <img src="/assets/img/the-radiance-within.png" alt="The Radiance Within">
+      <h3>The Radiance Within</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 10 -->
+    <div class="ebook-card">
+      <img src="/assets/img/healing-dzikir-of-powerful.png" alt="Healing Dzikir of Powerful">
+      <h3>Healing Dzikir of Powerful</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 11 -->
+    <div class="ebook-card">
+      <img src="/assets/img/jatidiri.png" alt="Jatidiri">
+      <h3>Jatidiri</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 12 -->
+    <div class="ebook-card">
+      <img src="/assets/img/the-dzikir-of-powerful.png" alt="The Dzikir of Powerful">
+      <h3>The Dzikir of Powerful</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 13 -->
+    <div class="ebook-card">
+      <img src="/assets/img/membongkar-realitas-hologram.png" alt="Membongkar Realitas Hologram">
+      <h3>Membongkar Realitas Hologram</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 14 -->
+    <div class="ebook-card">
+      <img src="/assets/img/the-untouchable.png" alt="The Untouchable">
+      <h3>The Untouchable</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 15 -->
+    <div class="ebook-card">
+      <img src="/assets/img/quantum-ruh.png" alt="Quantum Ruh">
+      <h3>Quantum Ruh</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 16 -->
+    <div class="ebook-card">
+      <img src="/assets/img/zero-points-dzikir.png" alt="Zero Points Dzikir">
+      <h3>Zero Points Dzikir</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 17 -->
+    <div class="ebook-card">
+      <img src="/assets/img/pasrah-adalah-dzikir.png" alt="Pasrah Adalah Dzikir">
+      <h3>Pasrah Adalah Dzikir</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 18 -->
+    <div class="ebook-card">
+      <img src="/assets/img/manunggal.png" alt="Manunggal">
+      <h3>Manunggal</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 19 -->
+    <div class="ebook-card">
+      <img src="/assets/img/navigasi-cahaya.png" alt="Navigasi Cahaya">
+      <h3>Navigasi Cahaya</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 20 -->
+    <div class="ebook-card">
+      <img src="/assets/img/rahasia-menemukan-kode-sumber-realitas.png" alt="Rahasia Menemukan Kode Sumber Realitas">
+      <h3>Rahasia Menemukan Kode Sumber Realitas</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 21 -->
+    <div class="ebook-card">
+      <img src="/assets/img/menguak-potensi-diri-tanpa-batas.png" alt="Menguak Potensi Diri Tanpa Batas">
+      <h3>Menguak Potensi Diri Tanpa Batas</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 22 -->
+    <div class="ebook-card">
+      <img src="/assets/img/cara-jitu-berdamai-dengan-diri.png" alt="Cara Jitu Berdamai Dengan Diri">
+      <h3>Cara Jitu Berdamai Dengan Diri</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
+    <!-- 23 -->
+    <div class="ebook-card">
+      <img src="/assets/img/tauhid-quantum.png" alt="Tauhid Quantum">
+      <h3>Tauhid Quantum</h3>
+      <a href="#">Lihat Detail</a>
+    </div>
+
   </div>
-
-  <div class="card">
-    <img src="assets/img/the-art-of-surrender.png">
-    <h3>The Art of Surrender</h3>
-    <a href="/produk/the-art-of-surrender.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/law-of-spiritual-attraction.png">
-    <h3>Law of Spiritual Attraction</h3>
-    <a href="/produk/law-of-spiritual-attraction.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/membongkar-realitas-hologram.png">
-    <h3>Membongkar Realitas Hologram</h3>
-    <a href="/produk/membongkar-realitas-hologram.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/quantum-syukur.png">
-    <h3>Quantum Syukur</h3>
-    <a href="/produk/quantum-syukur.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/healing-dzikir-of-powerful.png">
-    <h3>Healing Dzikir of Powerful</h3>
-    <a href="/produk/healing-dzikir-of-powerful.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/rahasia-mengenal-jatidiri.png">
-    <h3>Rahasia Mengenal Jatidiri</h3>
-    <a href="/produk/rahasia-mengenal-jatidiri.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/ksatria-spiritual.png">
-    <h3>Ksatria Spiritual</h3>
-    <a href="/produk/ksatria-spiritual.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/manunggal.png">
-    <h3>Manunggal</h3>
-    <a href="/produk/manunggal.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/menguak-potensi-diri-tanpa-batas.png">
-    <h3>Menguak Potensi Diri Tanpa Batas</h3>
-    <a href="/produk/menguak-potensi-diri-tanpa-batas.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/navigasi-cahaya.png">
-    <h3>Navigasi Cahaya</h3>
-    <a href="/produk/navigasi-cahaya.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/pasrah-itu-dzikir.png">
-    <h3>Pasrah Itu Dzikir</h3>
-    <a href="/produk/pasrah-itu-dzikir.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/pasrah-adalah-dzikir.png">
-    <h3>Pasrah Adalah Dzikir</h3>
-    <a href="/produk/pasrah-adalah-dzikir.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/quantum-cahaya.png">
-    <h3>Quantum Cahaya</h3>
-    <a href="/produk/quantum-cahaya.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/quantum-dzikir.png">
-    <h3>Quantum Dzikir</h3>
-    <a href="/produk/quantum-dzikir.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/quantum-ruh.png">
-    <h3>Quantum Ruh</h3>
-    <a href="/produk/quantum-ruh.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/rahasia-membongkar-realitas.png">
-    <h3>Rahasia Membongkar Realitas</h3>
-    <a href="/produk/rahasia-membongkar-realitas.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/rahasia-menemukan-jatidiri.png">
-    <h3>Rahasia Menemukan Jatidiri</h3>
-    <a href="/produk/rahasia-menemukan-jatidiri.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/tauhid-quantum.png">
-    <h3>Tauhid Quantum</h3>
-    <a href="/produk/tauhid-quantum.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/the-dzikir-of-powerful.png">
-    <h3>The Dzikir of Powerful</h3>
-    <a href="/produk/the-dzikir-of-powerful.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/the-radiance-within.png">
-    <h3>The Radiance Within</h3>
-    <a href="/produk/the-radiance-within.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/the-untouchable.png">
-    <h3>The Untouchable</h3>
-    <a href="/produk/the-untouchable.html" class="btn detail">Lihat Detail</a>
-  </div>
-
-  <div class="card">
-    <img src="assets/img/zero-points-dzikir.png">
-    <h3>Zero Points Dzikir</h3>
-    <a href="/produk/zero-points-dzikir.html" class="btn detail">Lihat Detail</a>
-  </div>
-
 </div>
 
 <footer>
-  Hak undang-undang dilindungi 2026 © Dunia Digital
+  © 2026 Dunia Digital Shop • Ebooks Premium Spiritual
 </footer>
 
 </body>
-  </html>
+        </html>
