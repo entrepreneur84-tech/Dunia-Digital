@@ -1,147 +1,82 @@
-/* ================================
-   GLOBAL RESET
-================================ */
-* {
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
-body {
-  background: #0f172a;
-  color: #e2e8f0;
-  line-height: 1.6;
-}
-
-/* ================================
-   CONTAINER
-================================ */
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 40px 20px;
-}
-
-/* ================================
-   HEADER
-================================ */
-.header {
+header {
   text-align: center;
-  margin-bottom: 40px;
+  padding: 2rem 1rem;
+  background: #1f1f1f;
+  color: #fff;
 }
 
-.header h1 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #38bdf8;
-  margin-bottom: 10px;
+header h1 {
+  margin: 0;
+  font-size: 2rem;
 }
 
-.header p {
-  color: #94a3b8;
-  font-size: 16px;
+header p {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
 }
 
-/* ================================
-   GRID EBOOK
-================================ */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* ================================
-   CARD EBOOK
-================================ */
 .card {
-  background: #1e293b;
-  border-radius: 16px;
+  background: #fff;
+  border-radius: 8px;
   overflow: hidden;
-  transition: 0.3s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
 }
 
-.card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
-}
-
-/* ================================
-   IMAGE MOCKUP
-================================ */
 .card img {
   width: 100%;
-  height: 280px;
-  object-fit: cover;
-  background: #0f172a;
+  height: auto;
+  display: block;
 }
 
-/* ================================
-   CARD BODY
-================================ */
 .card-body {
-  padding: 18px;
+  padding: 1rem;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card .desc {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
   flex-grow: 1;
 }
 
-.title {
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 8px;
-  color: #f8fafc;
-}
-
-.desc {
-  font-size: 14px;
-  color: #94a3b8;
-  margin-bottom: 18px;
-  flex-grow: 1;
-}
-
-/* ================================
-   BUTTON
-================================ */
-.btn {
-  text-align: center;
+.card .btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #ff6600;
+  color: #fff;
   text-decoration: none;
-  padding: 12px;
-  border-radius: 10px;
-  font-weight: 600;
-  background: linear-gradient(135deg, #38bdf8, #22c55e);
-  color: white;
-  transition: 0.3s ease;
-}
-
-.btn:hover {
-  opacity: 0.9;
-  transform: scale(1.03);
-}
-
-/* ================================
-   FOOTER
-================================ */
-.footer {
+  border-radius: 4px;
   text-align: center;
-  margin-top: 50px;
-  font-size: 14px;
-  color: #64748b;
+  transition: background 0.3s;
 }
 
-/* ================================
-   RESPONSIVE MOBILE
-================================ */
-@media (max-width: 768px) {
-  .header h1 {
-    font-size: 24px;
-  }
-
-  .card img {
-    height: 240px;
-  }
-  }
+.card .btn:hover {
+  background: #e55b00;
+}
