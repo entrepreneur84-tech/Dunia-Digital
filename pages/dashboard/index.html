@@ -1,170 +1,228 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard Admin - Dunia Digital</title>
-  <link rel="stylesheet" href="/assets/css/style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Admin - Dunia Digital</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #020617;
-      color: white;
-    }
-    header {
-      padding: 16px;
-      text-align: center;
-      background: #020617;
-      border-bottom: 1px solid #1e293b;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 30px 20px;
-    }
-    .card {
-      background: #0f172a;
-      padding: 20px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
-    input, select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 10px;
-      border: none;
-      margin-top: 8px;
-      background: #020617;
-      color: white;
-    }
-    label {
-      margin-top: 15px;
-      display: block;
-      font-weight: bold;
-    }
-    button {
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 12px;
-      border: none;
-      width: 100%;
-      font-weight: bold;
-      background: linear-gradient(135deg,#7c3aed,#06b6d4);
-      color: white;
-      cursor: pointer;
-    }
-    .result {
-      margin-top: 20px;
-      padding: 15px;
-      background: #020617;
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    .license {
-      font-size: 18px;
-      font-weight: bold;
-      color: #22c55e;
-      margin-top: 10px;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#020617;
+  color:#fff;
+}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+}
+h1{
+  color:#22c55e;
+  margin-bottom:20px;
+}
+.login-box{
+  max-width:400px;
+  margin:120px auto;
+  background:#020617;
+  padding:30px;
+  border-radius:16px;
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+input{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:10px;
+}
+button{
+  margin-top:15px;
+  padding:12px 20px;
+  border:none;
+  border-radius:10px;
+  font-weight:bold;
+  background:linear-gradient(45deg,#22c55e,#16a34a);
+  color:white;
+  cursor:pointer;
+}
+button:hover{
+  background:linear-gradient(45deg,#16a34a,#22c55e);
+}
+.table-box{
+  overflow-x:auto;
+  background:#020617;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+th,td{
+  padding:12px;
+  text-align:left;
+  border-bottom:1px solid #1e293b;
+}
+th{
+  color:#22c55e;
+}
+.search{
+  margin-bottom:15px;
+  padding:10px;
+  width:100%;
+  border-radius:10px;
+  border:none;
+}
+.actions button{
+  padding:6px 12px;
+  font-size:12px;
+  margin-right:5px;
+}
+.logout{
+  float:right;
+}
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+</style>
 </head>
+
 <body>
 
-<header>🎛️ Dashboard Admin Dunia Digital</header>
+<!-- LOGIN -->
+<div id="loginPage" class="login-box">
+  <h2>Login Admin</h2>
+  <input type="password" id="password" placeholder="Masukkan Password Admin">
+  <button onclick="login()">Masuk Dashboard</button>
+</div>
 
-<div class="container">
-
-  <div class="card">
-    <h2>Aktivasi License Pembeli</h2>
-
-    <label>Email Pembeli</label>
-    <input type="email" id="email" placeholder="contoh@email.com">
-
-    <label>Produk Ebook</label>
-    <select id="product">
-      <option value="Ebook Spiritual Premium">Ebook Spiritual Premium</option>
-      <option value="Bundle Spiritual Mastery">Bundle Spiritual Mastery</option>
-      <option value="Sistem Energi & Kesadaran">Sistem Energi & Kesadaran</option>
-    </select>
-
-    <button onclick="activateLicense()">Aktifkan License</button>
-
-    <div class="result" id="resultBox" style="display:none;">
-      <div>License berhasil dibuat:</div>
-      <div class="license" id="licenseKey"></div>
-
-      <div style="margin-top:10px;">
-        Link Akses Viewer:
-        <div id="viewerLink"></div>
-      </div>
-
-      <button onclick="sendToWhatsApp()">Kirim License ke WhatsApp</button>
+<!-- DASHBOARD -->
+<div id="dashboardPage" style="display:none">
+  <div class="container">
+    <div class="topbar">
+      <h1>Dashboard Order Ebook</h1>
+      <button class="logout" onclick="logout()">Logout</button>
     </div>
-  </div>
 
+    <input type="text" class="search" placeholder="Cari nama / produk..." onkeyup="searchOrders(this.value)">
+
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Produk</th>
+            <th>Tanggal</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="orderTable"></tbody>
+      </table>
+    </div>
+
+    <button onclick="exportCSV()">Export CSV</button>
+  </div>
 </div>
 
 <script>
-  let generatedLicense = "";
+// PASSWORD ADMIN (ubah kalau mau)
+const ADMIN_PASS = "123456";
 
-  async function activateLicense() {
-    const email = document.getElementById("email").value;
-    const product = document.getElementById("product").value;
-
-    if (!email) {
-      alert("Email wajib diisi");
-      return;
-    }
-
-    const res = await fetch("/api/activate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, product })
-    });
-
-    const data = await res.json();
-
-    if (data.success) {
-      generatedLicense = data.license;
-
-      document.getElementById("licenseKey").innerText = data.license;
-
-      const viewerURL = window.location.origin + "/store/viewer.html?key=" + data.license;
-      document.getElementById("viewerLink").innerText = viewerURL;
-
-      document.getElementById("resultBox").style.display = "block";
-    } else {
-      alert("Gagal membuat license");
-    }
+// LOGIN
+function login(){
+  const pass = document.getElementById("password").value;
+  if(pass === ADMIN_PASS){
+    localStorage.setItem("admin_login","true");
+    showDashboard();
+  }else{
+    alert("Password salah!");
   }
+}
 
-  function sendToWhatsApp() {
-    if (!generatedLicense) return;
+// LOGOUT
+function logout(){
+  localStorage.removeItem("admin_login");
+  location.reload();
+}
 
-    const viewerURL = window.location.origin + "/store/viewer.html?key=" + generatedLicense;
+// CEK LOGIN
+function checkLogin(){
+  if(localStorage.getItem("admin_login") === "true"){
+    showDashboard();
+  }
+}
 
-    const text = `
-Halo, license ebook Anda sudah aktif ✨
+function showDashboard(){
+  document.getElementById("loginPage").style.display="none";
+  document.getElementById("dashboardPage").style.display="block";
+  loadOrders();
+}
 
-🔑 License: ${generatedLicense}
-📖 Akses Ebook:
-${viewerURL}
+// LOAD ORDER DARI LOCALSTORAGE
+function loadOrders(){
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+  const table = document.getElementById("orderTable");
+  table.innerHTML = "";
 
-Silakan buka link di atas untuk membaca ebook.
-Terima kasih 🙏
+  orders.forEach((o,i)=>{
+    table.innerHTML += `
+      <tr>
+        <td>${o.nama}</td>
+        <td>${o.email}</td>
+        <td>${o.produk}</td>
+        <td>${o.tanggal}</td>
+        <td class="actions">
+          <button onclick="deleteOrder(${i})">Hapus</button>
+        </td>
+      </tr>
     `;
+  });
+}
 
-    const encoded = encodeURIComponent(text);
-    window.open("https://wa.me/6285175313909?text=" + encoded, "_blank");
+// HAPUS ORDER
+function deleteOrder(index){
+  let orders = JSON.parse(localStorage.getItem("orders") || "[]");
+  if(confirm("Hapus order ini?")){
+    orders.splice(index,1);
+    localStorage.setItem("orders",JSON.stringify(orders));
+    loadOrders();
   }
+}
+
+// SEARCH
+function searchOrders(keyword){
+  const rows = document.querySelectorAll("#orderTable tr");
+  rows.forEach(row=>{
+    row.style.display = row.innerText.toLowerCase().includes(keyword.toLowerCase()) ? "" : "none";
+  });
+}
+
+// EXPORT CSV
+function exportCSV(){
+  const orders = JSON.parse(localStorage.getItem("orders") || "[]");
+  let csv = "Nama,Email,Produk,Tanggal\n";
+  orders.forEach(o=>{
+    csv += `${o.nama},${o.email},${o.produk},${o.tanggal}\n`;
+  });
+
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "orders.csv";
+  a.click();
+}
+
+// AUTO LOAD
+checkLogin();
 </script>
 
 </body>
