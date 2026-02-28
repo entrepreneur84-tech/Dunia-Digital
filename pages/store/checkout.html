@@ -114,6 +114,30 @@ document.getElementById("checkoutForm").addEventListener("submit", function(e){
   window.location.href = "../success.html?product=" + encodeURIComponent(product);
 });
 </script>
+  </script><script>
+document.getElementById("checkoutForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        product: "ksatria-spiritual"
+    };
+
+    const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if(result.success){
+        window.location.href = "/pages/success.html";
+    } else {
+        alert("Terjadi kesalahan.");
+    }
+});
   </script>
 </body>
 </html>
