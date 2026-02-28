@@ -1,50 +1,52 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-<meta charset="UTF-8">
 <title>Admin Dashboard</title>
 <style>
-body{
-  font-family:sans-serif;
-  background:#111827;
-  color:white;
-  padding:30px;
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-th, td{
-  padding:10px;
-  border:1px solid #374151;
-}
+body{font-family:sans-serif;background:#111;color:white;padding:30px;}
+button{padding:5px 10px;}
 </style>
 </head>
 <body>
 
-<h2>Dashboard Orders</h2>
-
-<table>
+<h2>Order List</h2>
+<table border="1" cellpadding="10">
 <thead>
 <tr>
-<th>Order ID</th>
+<th>ID</th>
+<th>Status</th>
+<th>Aksi</th>
 </tr>
 </thead>
-<tbody id="ordersTable"></tbody>
+<tbody id="orders"></tbody>
 </table>
 
 <script>
-async function loadOrders(){
+async function load(){
   const res = await fetch("/api/orders");
   const data = await res.json();
+  const table = document.getElementById("orders");
 
-  const table = document.getElementById("ordersTable");
   data.keys.forEach(order=>{
-    table.innerHTML += `<tr><td>${order.name}</td></tr>`;
+    table.innerHTML += `
+      <tr>
+        <td>${order.name}</td>
+        <td>Check KV</td>
+        <td>
+          <button onclick="setPaid('${order.name}')">SET PAID</button>
+        </td>
+      </tr>
+    `;
   });
 }
 
-loadOrders();
+async function setPaid(id){
+  await fetch("/api/set-paid?id="+id);
+  alert("Status jadi PAID");
+  location.reload();
+}
+
+load();
 </script>
 
 </body>
