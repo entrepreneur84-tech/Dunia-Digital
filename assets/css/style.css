@@ -1,1 +1,147 @@
+/* ================================
+   GLOBAL RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
 
+body {
+  background: #0f172a;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+/* ================================
+   CONTAINER
+================================ */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* ================================
+   HEADER
+================================ */
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.header p {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+/* ================================
+   GRID EBOOK
+================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+/* ================================
+   CARD EBOOK
+================================ */
+.card {
+  background: #1e293b;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+/* ================================
+   IMAGE MOCKUP
+================================ */
+.card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  background: #0f172a;
+}
+
+/* ================================
+   CARD BODY
+================================ */
+.card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #f8fafc;
+}
+
+.desc {
+  font-size: 14px;
+  color: #94a3b8;
+  margin-bottom: 18px;
+  flex-grow: 1;
+}
+
+/* ================================
+   BUTTON
+================================ */
+.btn {
+  text-align: center;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: white;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* ================================
+   FOOTER
+================================ */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ================================
+   RESPONSIVE MOBILE
+================================ */
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .card img {
+    height: 240px;
+  }
+  }
