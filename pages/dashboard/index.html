@@ -1,39 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Dashboard</title>
+<meta charset="UTF-8">
+<title>Dashboard Admin</title>
 <style>
-body{font-family:sans-serif;background:#111;color:white;padding:30px;}
-button{padding:5px 10px;}
+body{background:#0f172a;color:white;font-family:Arial;padding:30px;}
+input,button{padding:8px;margin:5px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;}
+th,td{padding:10px;border:1px solid #334155;}
 </style>
 </head>
 <body>
 
+<h2>Login Admin</h2>
+<input type="password" id="pass" placeholder="Password">
+<button onclick="login()">Login</button>
+
+<div id="panel" style="display:none;">
 <h2>Order List</h2>
-<table border="1" cellpadding="10">
+<table>
 <thead>
 <tr>
-<th>ID</th>
+<th>Nama</th>
+<th>Email</th>
+<th>Harga</th>
 <th>Status</th>
 <th>Aksi</th>
 </tr>
 </thead>
-<tbody id="orders"></tbody>
+<tbody id="table"></tbody>
 </table>
+</div>
 
 <script>
-async function load(){
-  const res = await fetch("/api/orders");
-  const data = await res.json();
-  const table = document.getElementById("orders");
 
-  data.keys.forEach(order=>{
+let ADMIN_SECRET = "";
+
+function login(){
+  ADMIN_SECRET = document.getElementById("pass").value;
+  load();
+}
+
+async function load(){
+  const res = await fetch("/api/orders", {
+    headers: { "x-admin": ADMIN_SECRET }
+  });
+
+  if(res.status === 401){
+    alert("Password salah");
+    return;
+  }
+
+  document.getElementById("panel").style.display="block";
+
+  const data = await res.json();
+  const table = document.getElementById("table");
+  table.innerHTML="";
+
+  data.forEach(order=>{
     table.innerHTML += `
       <tr>
         <td>${order.name}</td>
-        <td>Check KV</td>
+        <td>${order.email}</td>
+        <td>Rp ${order.price.toLocaleString("id-ID")}</td>
+        <td>${order.status}</td>
         <td>
-          <button onclick="setPaid('${order.name}')">SET PAID</button>
+          ${order.status !== "paid" ? 
+            `<button onclick="setPaid('${order.id}')">SET PAID</button>` 
+            : "✓"}
         </td>
       </tr>
     `;
@@ -41,12 +75,12 @@ async function load(){
 }
 
 async function setPaid(id){
-  await fetch("/api/set-paid?id="+id);
-  alert("Status jadi PAID");
-  location.reload();
+  await fetch("/api/set-paid?id="+id, {
+    headers: { "x-admin": ADMIN_SECRET }
+  });
+  load();
 }
 
-load();
 </script>
 
 </body>
