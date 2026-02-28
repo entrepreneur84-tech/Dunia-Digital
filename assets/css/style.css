@@ -121,3 +121,27 @@ footer {
     font-size: 0.9rem;
   }
 }
+/* ===== FIX GAMBAR EBOOK ===== */
+
+.book-card img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
+/* Supaya tidak melebar aneh */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Grid biar rapi */
+.book-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  }
