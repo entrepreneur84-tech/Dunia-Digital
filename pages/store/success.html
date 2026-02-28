@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instruksi Pembayaran</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
+  color:white;
+  text-align:center;
+  padding:30px;
+}
+
+.container{
+  max-width:500px;
+  margin:auto;
+  background:#111827;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+
+h2{
+  margin-bottom:10px;
+}
+
+.box{
+  background:#1f2937;
+  padding:15px;
+  border-radius:10px;
+  margin:15px 0;
+}
+
+button{
+  padding:10px 15px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.copy-btn{
+  background:#2563eb;
+  color:white;
+}
+
+.upload-btn{
+  background:#16a34a;
+  color:white;
+  width:100%;
+  margin-top:15px;
+}
+
+input[type="file"]{
+  margin-top:10px;
+  color:white;
+}
+.small{
+  font-size:13px;
+  opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>💳 Pembayaran SeaBank</h2>
+
+<p>Silakan transfer sesuai nominal berikut:</p>
+
+<div class="box">
+  <h3>Rp 99.000</h3>
+  <p class="small">Nominal harus tepat agar mudah diverifikasi</p>
+</div>
+
+<div class="box">
+  <h3>SeaBank</h3>
+  <p id="rekening">9010XXXXXXX</p>
+  <p>Atas Nama: <b>Nama Kamu</b></p>
+  <button class="copy-btn" onclick="copyRek()">Salin Nomor Rekening</button>
+</div>
+
+<hr style="margin:25px 0; opacity:0.2;">
+
+<h3>Upload Bukti Transfer</h3>
+
+<form id="uploadForm" enctype="multipart/form-data">
+  <input type="file" id="file" accept="image/*" required>
+  <button type="submit" class="upload-btn">Kirim Bukti</button>
+</form>
+
+<p class="small">Setelah upload, tunggu verifikasi admin (1-24 jam)</p>
+
+</div>
+
+<script>
+
+const orderId = new URLSearchParams(window.location.search).get("order");
+
+function copyRek(){
+  const rek = document.getElementById("rekening").innerText;
+  navigator.clipboard.writeText(rek);
+  alert("Nomor rekening disalin");
+}
+
+document.getElementById("uploadForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const fileInput = document.getElementById("file");
+
+  if(!orderId){
+    alert("Order tidak ditemukan");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("orderId", orderId);
+  formData.append("file", fileInput.files[0]);
+
+  const res = await fetch("/api/upload", {
+    method:"POST",
+    body:formData
+  });
+
+  const result = await res.json();
+
+  if(result.success){
+    alert("Bukti berhasil dikirim. Tunggu verifikasi.");
+  }else{
+    alert("Gagal upload.");
+  }
+
+});
+
+</script>
+
+</body>
+</html>
